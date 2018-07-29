@@ -1,4 +1,7 @@
 params:
+  Rabbitmq:
+   ExchangeName: ExchangeName
+   QueueName: QueueName
   swagger:
     #参数名
     token-name: webtoken

@@ -1,9 +1,9 @@
  spring:
   rabbitmq:
-      host: 192.168.1.171
+      host: 127.0.0.1
       port: 5672
-      username: lc
+      username: admin
       password: 123456
-      publisher-confirms: true
-      publisher-returns: true
-      template.mandatory: true
+      virtual-host: dc
+     #永久链接。解决后台突然报错断开连接
+      connection-timeout: 0

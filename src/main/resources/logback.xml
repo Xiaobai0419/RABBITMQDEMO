@@ -16,18 +16,7 @@
 				%msg%n</pattern>
 		</layout>
 	</appender>
-	
-	<!-- 配置数据库连接 -->
-	<appender name="db-classic-mysql" class="ch.qos.logback.classic.db.DBAppender">
-		<connectionSource
-			class="ch.qos.logback.core.db.DriverManagerConnectionSource">
-			<driverClass>com.mysql.jdbc.Driver</driverClass>
-			<url>jdbc:mysql://127.0.0.1:3306/test
-			</url>
-			<user>admin</user>
-			<password>123456</password>
-		</connectionSource>
-	</appender>
+
 	<!-- error 日志 -->
 	<appender name="errorAppender"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">

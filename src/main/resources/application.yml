@@ -3,4 +3,4 @@ server:
 spring:
   jmx.default-domain : MYCODE
   profiles:
-    active: params,datasource,redis,rabbitmq,swagger
+    active: params,rabbitmq
