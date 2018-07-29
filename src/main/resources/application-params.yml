@@ -1,0 +1,14 @@
+params:
+  swagger:
+    #参数名
+    token-name: webtoken
+    #参数描述
+    description: ToKen
+    #参数类型
+    modelRef: string
+    #存放位置
+    parameterType: header
+    #是否必须
+    required: true
+    #扫描路径
+    basePackage: com.mc.controller

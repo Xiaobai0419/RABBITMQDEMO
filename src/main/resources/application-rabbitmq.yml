@@ -1,0 +1,9 @@
+ spring:
+  rabbitmq:
+      host: 192.168.1.171
+      port: 5672
+      username: lc
+      password: 123456
+      publisher-confirms: true
+      publisher-returns: true
+      template.mandatory: true

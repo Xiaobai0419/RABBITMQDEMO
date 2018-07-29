@@ -1,0 +1,6 @@
+server:
+  port: 8999
+spring:
+  jmx.default-domain : MYCODE
+  profiles:
+    active: params,datasource,redis,rabbitmq,swagger
