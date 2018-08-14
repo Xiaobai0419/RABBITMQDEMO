@@ -36,8 +36,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * 修改整理注释
  * @date 2018/5/7
  */
-//@Configuration
-//@EnableSwagger2
+@Configuration
+@EnableSwagger2
 public class SwaggerConfig {
 
     @Value("${params.swagger.token-name}")

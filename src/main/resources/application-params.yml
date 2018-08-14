@@ -12,6 +12,6 @@ params:
     #存放位置
     parameterType: header
     #是否必须
-    required: true
+    required: false
     #扫描路径
     basePackage: com.mc.controller

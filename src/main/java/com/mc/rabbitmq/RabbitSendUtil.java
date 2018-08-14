@@ -3,6 +3,7 @@ package com.mc.rabbitmq;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,9 +11,9 @@ import org.springframework.stereotype.Component;
  * 对AmqpAdmin的接口的方法的简单解释与自我学习使用
  */
 @Component
-public class RabbitUtil {
+public class RabbitSendUtil {
 
-	private final static Logger logger = LoggerFactory.getLogger(RabbitUtil.class);
+	private final static Logger logger = LoggerFactory.getLogger(RabbitSendUtil.class);
 
 	private final AmqpAdmin amqpAdmin;
 
@@ -22,7 +23,7 @@ public class RabbitUtil {
 	private final TopicExchange topicExchange;
 
 	@Autowired
-	public RabbitUtil(AmqpAdmin amqpAdmin, AmqpTemplate amqpTemplate, TopicExchange topicExchange){
+	public RabbitSendUtil(AmqpAdmin amqpAdmin, AmqpTemplate amqpTemplate, TopicExchange topicExchange){
 		this.amqpAdmin = amqpAdmin;
 		this.amqpTemplate = amqpTemplate;
 		this.topicExchange = topicExchange;
@@ -63,6 +64,19 @@ public class RabbitUtil {
 		amqpTemplate.convertAndSend(topicExchange.getName(),msg);
 	}
 
+	/**
+	 * 给queue发送消息
+	 * @param queueName
+	 * @param msg
+	 */
+	public void sendToQueue(String queueName,String msg){
+		Queue queue = new Queue(queueName);
+		addQueue(queue);
+		Binding binding = BindingBuilder.bind(queue).to(DirectExchange.DEFAULT).withQueueName();
+		amqpAdmin.declareBinding(binding);
+		Message message = new Message(msg.getBytes(),new MessageProperties());
+		amqpTemplate.convertAndSend(DirectExchange.DEFAULT.getName(),queueName,message);
+	}
 	/**
 	 * 创建Exchange
 	 * @param exchange
