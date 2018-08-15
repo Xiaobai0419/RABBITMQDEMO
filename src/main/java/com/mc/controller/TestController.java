@@ -21,9 +21,13 @@ public class TestController {
         return "success";
     }
 
-    @GetMapping(value = "/send/{message}")
-    public void sendTest(@PathVariable String message){
-        rabbitSendUtil.sendToQueue("QueueName",message);
+    @GetMapping(value = "/send/lcTest/{message}")
+    public void sendTest1(@PathVariable String message){
+        rabbitSendUtil.sendToQueue("lcTest",message);
     }
 
+    @GetMapping(value = "/send/QueueName/{message}")
+    public void sendTest2(@PathVariable String message){
+        rabbitSendUtil.sendToQueue("QueueName",message);
+    }
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 对AmqpAdmin的接口的方法的简单解释与自我学习使用
+ * @author lc
  */
 @Component
 public class RabbitSendUtil {
@@ -74,7 +75,10 @@ public class RabbitSendUtil {
 		addQueue(queue);
 		Binding binding = BindingBuilder.bind(queue).to(DirectExchange.DEFAULT).withQueueName();
 		amqpAdmin.declareBinding(binding);
-		Message message = new Message(msg.getBytes(),new MessageProperties());
+		MessageProperties messageProperties = new MessageProperties();
+		//设置消息内容的类型，默认是 application/octet-stream 会是 ASCII 码值
+		messageProperties.setContentType(MessageProperties.CONTENT_TYPE_TEXT_PLAIN);
+		Message message = new Message(msg.getBytes(),messageProperties);
 		amqpTemplate.convertAndSend(DirectExchange.DEFAULT.getName(),queueName,message);
 	}
 	/**

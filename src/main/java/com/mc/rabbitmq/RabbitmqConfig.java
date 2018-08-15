@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-
+/**
+ * 初始配置
+ * @author lc
+ */
 @Component
 public class RabbitmqConfig {
 	@Value("${params.Rabbitmq.ExchangeName}")
@@ -45,6 +48,13 @@ public class RabbitmqConfig {
 	@Bean
 	public Queue queue(){
 		Queue queue = new Queue(queueName,true,false,false);
+		amqpAdmin.declareQueue(queue);
+		return queue;
+	}
+
+	@Bean
+	public Queue test(){
+		Queue queue = new Queue("lcTest",true,false,false);
 		amqpAdmin.declareQueue(queue);
 		return queue;
 	}

@@ -1,8 +1,11 @@
 package com.mc;
 
 
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 
 /**
@@ -11,6 +14,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class Application {
+
+    @Bean
+    public SimpleMessageListenerContainer container(ConnectionFactory connectionFactory){
+        return new SimpleMessageListenerContainer(connectionFactory);
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
