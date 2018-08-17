@@ -1,5 +1,6 @@
 package com.mc.rabbitmq;
 
+import com.rabbitmq.client.AMQP;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.*;
@@ -146,6 +147,16 @@ public class RabbitSendUtil {
 		amqpAdmin.declareBinding(binding);
 	}
 
+	/**
+	 * 绑定一个Exchange到一个匹配型Exchange 使用一个routingKey
+	 * @param exchange
+	 * @param topicExchange
+	 * @param routingKey
+	 */
+	public void addBinding(Exchange exchange,TopicExchange topicExchange,String routingKey){
+		Binding binding = BindingBuilder.bind(exchange).to(topicExchange).with(routingKey);
+		amqpAdmin.declareBinding(binding);
+	}
 	/**
 	 * 去掉一个binding
 	 * @param binding
