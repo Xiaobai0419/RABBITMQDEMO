@@ -1,9 +1,9 @@
  spring:
   rabbitmq:
-      host: 192.168.1.122
+      host: 192.168.4.152
       port: 5672
       username: admin
-      password: 123456
-      virtual-host: dc
+      password: admin
+      virtual-host: sunfield
      #永久链接。解决后台突然报错断开连接
       connection-timeout: 0

@@ -24,4 +24,4 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-}
+}//TODO Exchange和Queue绑定，向Exchange发送广播消息，动态创建Queue接收更多消息（不能是广播，是分流总量消息，RabbitMQ需要生产者发送到新的Queue,考虑Kafka同一个消费者组动态添加消费者--消费端缓压，同一个Topic动态增加Partition--服务端扩容）
